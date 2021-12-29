@@ -100,8 +100,6 @@ text=canvas.create_text(525,23,text=pointsDisplay,font=("Purisa",26),fill="red")
 # Lives
 live=canvas.create_text(40,20,text="LIVES:",fill="red",font=("Purisa",18))
 live1=canvas.create_image(80,5,image=life,anchor="nw",tags="lifeOne")
-live2=canvas.create_image(120,5,image=life,anchor="nw",tags="lifeTwo")
-live3=canvas.create_image(160,5,image=life,anchor="nw",tags="lifeThree")
 scores=canvas.create_text(450,20,text="SCORES:",fill="red",font=("Purisa",18))
 die=0
 #---------------------------------------------------------------------------------
@@ -176,21 +174,15 @@ def deadPlay():
     for bullets in arrayOfBulletsEnemy:
         topBulletPos=canvas.coords(bullets)
         if len(topBulletPos)>0:
-            if (posPlayer[0]>=topBulletPos[0]-20 and posPlayer[0]<=topBulletPos[0]+20 and posPlayer[1]>=topBulletPos[1]-20 and posPlayer[1]<=topBulletPos[1]+20):
-                canvas.create_image(posPlayer[0],posPlayer[1]-20,image=dead,anchor="nw",tags="die")
+            if (topBulletPos[0]-40<=posPlayer[0] and topBulletPos[0]+40>=posPlayer[0] and topBulletPos[1]-40<=posPlayer[1] and topBulletPos[1]+40>=posPlayer[1]):
+                # canvas.create_image(posPlayer[0],posPlayer[1]-20,image=dead,anchor="nw",tags="die")
                 die=+1
                 canvas.delete(player)
                 canvas.delete(bullets)
                 canvas.delete(enemies2)
                 canvas.delete(topShot)
-                if die==1:
-                    canvas.delete("lifeThree")
-                elif die==2:
-                    canvas.delete("lifeTwo")
-                elif die==3:
-                    canvas.delete("lifeOne")
-                else:
-                    lostGame()                
+                canvas.delete("lifeOne")
+                lostGame()                
 # move left or right
 # @param moveRight : if true move right if false move left
 def moveHorizontaly(moveRight) :
