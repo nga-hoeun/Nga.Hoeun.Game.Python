@@ -105,13 +105,6 @@ die=0
 #---------------------------------------------------------------------------------
 # functions
 #---------------------------------------------------------------------------------
-# Load the game
-def gameLoading3():
-    canvas.create_text(450,300,text="3",fill="red",font=("Purisa",38),tags="three")
-def gameLoading2():
-    canvas.create_text(450,300,text="2",fill="red",font=("Purisa",38),tags="two")
-def gameLoading1():
-    canvas.create_text(450,300,text="1",fill="red",font=("Purisa",38),tags="one")
 # Time to win
 def winGame():
     global pointsDisplay,die
@@ -175,7 +168,6 @@ def deadPlay():
         topBulletPos=canvas.coords(bullets)
         if len(topBulletPos)>0:
             if (topBulletPos[0]-40<=posPlayer[0] and topBulletPos[0]+40>=posPlayer[0] and topBulletPos[1]-40<=posPlayer[1] and topBulletPos[1]+40>=posPlayer[1]):
-                # canvas.create_image(posPlayer[0],posPlayer[1]-20,image=dead,anchor="nw",tags="die")
                 die=+1
                 canvas.delete(player)
                 canvas.delete(bullets)
@@ -204,21 +196,9 @@ def movePlayerRight(event):
 def movePlayerLeft(event):
     moveHorizontaly(False)
 
-def deleteLoading3():
-    canvas.delete("three")
-def deleteLoading2():
-    canvas.delete("two")
-def deleteLoading1():
-    canvas.delete("one")
 # Start the game
 def startGame():
     canvas.delete(all)
-    canvas.after(1000,gameLoading3)
-    canvas.after(2000,deleteLoading3)
-    canvas.after(2000,gameLoading2)
-    canvas.after(3000,deleteLoading2)
-    canvas.after(3000,gameLoading1)
-    canvas.after(4000,deleteLoading1)
     moveBullet()
     addEnemies2()
 startGame()
